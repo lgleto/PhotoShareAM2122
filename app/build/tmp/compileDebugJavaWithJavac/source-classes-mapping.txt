@@ -1,0 +1,14 @@
+ipca/example/photoshare/BuildConfig.java
+ ipca.example.photoshare.BuildConfig
+ipca/example/photoshare/databinding/ActivitySplashBinding.java
+ ipca.example.photoshare.databinding.ActivitySplashBinding
+ipca/example/photoshare/databinding/ActivityMainBinding.java
+ ipca.example.photoshare.databinding.ActivityMainBinding
+ipca/example/photoshare/databinding/ActivityLoginBinding.java
+ ipca.example.photoshare.databinding.ActivityLoginBinding
+ipca/example/photoshare/databinding/FragmentNotificationsBinding.java
+ ipca.example.photoshare.databinding.FragmentNotificationsBinding
+ipca/example/photoshare/databinding/FragmentHomeBinding.java
+ ipca.example.photoshare.databinding.FragmentHomeBinding
+ipca/example/photoshare/databinding/FragmentDashboardBinding.java
+ ipca.example.photoshare.databinding.FragmentDashboardBinding

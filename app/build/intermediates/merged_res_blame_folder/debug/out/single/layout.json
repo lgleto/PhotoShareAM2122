@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "C:\\Users\\nunoi\\Documents\\GitHub\\PhotoShareAM2122\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_login.xml",
+        "source": "C:\\Users\\nunoi\\Documents\\GitHub\\PhotoShareAM2122\\app\\src\\main\\res\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "C:\\Users\\nunoi\\Documents\\GitHub\\PhotoShareAM2122\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_notifications.xml",
+        "source": "C:\\Users\\nunoi\\Documents\\GitHub\\PhotoShareAM2122\\app\\src\\main\\res\\layout\\fragment_notifications.xml"
+    },
+    {
+        "merged": "C:\\Users\\nunoi\\Documents\\GitHub\\PhotoShareAM2122\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_dashboard.xml",
+        "source": "C:\\Users\\nunoi\\Documents\\GitHub\\PhotoShareAM2122\\app\\src\\main\\res\\layout\\fragment_dashboard.xml"
+    },
+    {
+        "merged": "C:\\Users\\nunoi\\Documents\\GitHub\\PhotoShareAM2122\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_home.xml",
+        "source": "C:\\Users\\nunoi\\Documents\\GitHub\\PhotoShareAM2122\\app\\src\\main\\res\\layout\\fragment_home.xml"
+    },
+    {
+        "merged": "C:\\Users\\nunoi\\Documents\\GitHub\\PhotoShareAM2122\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_splash.xml",
+        "source": "C:\\Users\\nunoi\\Documents\\GitHub\\PhotoShareAM2122\\app\\src\\main\\res\\layout\\activity_splash.xml"
+    },
+    {
+        "merged": "C:\\Users\\nunoi\\Documents\\GitHub\\PhotoShareAM2122\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_main.xml",
+        "source": "C:\\Users\\nunoi\\Documents\\GitHub\\PhotoShareAM2122\\app\\src\\main\\res\\layout\\activity_main.xml"
+    }
+]
