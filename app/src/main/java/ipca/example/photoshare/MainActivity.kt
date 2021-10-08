@@ -1,5 +1,9 @@
 package ipca.example.photoshare
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +16,29 @@ import ipca.example.photoshare.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
+    var notificationReceiver : NotificationReceiver? = null
+
+    inner class NotificationReceiver : BroadcastReceiver() {
+        override fun onReceive(p0: Context?, intent: Intent?) {
+            intent?.extras?.getString(MyFirebaseMessagingService.NOTIFICATION_MESSAGE)?.let {
+                alertNotificatio(this@MainActivity, it)
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        notificationReceiver = NotificationReceiver()
+        this.registerReceiver(notificationReceiver, IntentFilter(MyFirebaseMessagingService.BROADCAST_NEW_NOTIFICATION))
+    }
+
+    override fun onPause() {
+        super.onPause()
+        notificationReceiver?.let {
+            this.unregisterReceiver(it)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

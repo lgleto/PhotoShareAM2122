@@ -11,6 +11,8 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import android.provider.MediaStore.Audio.Playlists.Members.PLAYLIST_ID
+import java.lang.Exception
 
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
@@ -39,12 +41,27 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         remoteMessage.notification?.let {
             Log.d(TAG, "Message Notification Body: ${it.body}")
 
-            it.body?.let { it1 -> sendNotification(it1) }
+            it.body?.let { it1 ->
+                broadcastContentReady(applicationContext, it1)
+
+            }
         }
 
         // Also if you intend on generating your own notifications as a result of a received FCM
         // message, here is where that should be initiated. See sendNotification method below.
     }
+
+    fun broadcastContentReady(context: Context, message:String) {
+        val intent = Intent(BROADCAST_NEW_NOTIFICATION)
+        try {
+            intent.putExtra(NOTIFICATION_MESSAGE, message)
+            context.sendBroadcast(intent)
+        } catch (e: Exception) {
+            //Log Message
+        }
+    }
+
+
     // [END receive_message]
 
     // [START on_new_token]
@@ -130,5 +147,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     companion object {
 
         private const val TAG = "MyFirebaseMsgService"
+        const val BROADCAST_NEW_NOTIFICATION = "ipca.example.photoshare.notification"
+        const val NOTIFICATION_MESSAGE = "ipca.example.photoshare.notification.message"
     }
 }
