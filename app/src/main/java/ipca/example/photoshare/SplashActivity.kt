@@ -5,9 +5,13 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
 
 import ipca.example.photoshare.databinding.ActivitySplashBinding
 import kotlinx.coroutines.Dispatchers
@@ -55,8 +59,26 @@ class SplashActivity : AppCompatActivity() {
                 finish()
             }
         }
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.w(TAG, "Fetching FCM registration token failed", task.exception)
+                return@OnCompleteListener
+            }
+
+            // Get new FCM registration token
+            val token = task.result
+
+            // Log and toast
+
+            Log.d(TAG, "O FCM é $token")
+            Toast.makeText(baseContext, "O FCM é $token", Toast.LENGTH_SHORT).show()
+        })
 
 
+    }
+
+    companion object {
+        val TAG = "SplashActivity"
     }
 
 }

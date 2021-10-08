@@ -52,19 +52,21 @@ class HomeFragment : Fragment() {
 
 
         db.collection("photos")
-            .get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    Log.d(TAG, "${document.id} => ${document.data}")
-                    val photo = Photo.fromHash(document)
-                    photos.add(photo)
+            .addSnapshotListener { documents, e ->
 
+                documents?.let {
+                    photos.clear()
+                    for (document in it) {
+                        Log.d(TAG, "${document.id} => ${document.data}")
+                        val photo = Photo.fromHash(document)
+                        photos.add(photo)
+
+                    }
+                    mAdapter?.notifyDataSetChanged()
                 }
-                mAdapter?.notifyDataSetChanged()
+
             }
-            .addOnFailureListener { exception ->
-                Log.w(TAG, "Error getting documents: ", exception)
-            }
+
 
     }
 

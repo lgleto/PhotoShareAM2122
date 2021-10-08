@@ -57,6 +57,11 @@ class PhotoFragment : Fragment() {
             val filename = "${UUID.randomUUID()}.jpg"
             val mountainImagesRef = storageRef.child("images/${Firebase.auth.currentUser?.uid}/$filename")
 
+
+
+
+
+
             var uploadTask = mountainImagesRef.putBytes(data)
             uploadTask.continueWithTask {task ->
                 if (!task.isSuccessful) {
@@ -70,21 +75,32 @@ class PhotoFragment : Fragment() {
                 // Handle unsuccessful uploads
 
             }.addOnSuccessListener { task ->
-                val downloadUri = task.uploadSessionUri?.toString()?:""
+                storageRef.child("images/${Firebase.auth.currentUser?.uid}/$filename").downloadUrl.addOnSuccessListener {
+                    // Got the download URL for 'users/me/profile.png'
 
-                Log.d(TAG, "DocumentSnapshot added with ID: ${uploadTask.result.toString()}")
-                val photo = Photo(
-                    binding.editTextPhotoDescription.text.toString(),
-                    downloadUri
-                )
-                db.collection("photos")
-                    .add(photo.toHash())
-                    .addOnSuccessListener { documentReference ->
-                        Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
-                    }
-                    .addOnFailureListener { e ->
-                        Log.w(TAG, "Error adding document", e)
-                    }
+                    val downloadUri = it.toString()
+
+                    Log.d(TAG, "DocumentSnapshot added with ID: ${downloadUri}")
+                    val photo = Photo(
+                        binding.editTextPhotoDescription.text.toString(),
+                        downloadUri
+                    )
+                    db.collection("photos")
+                        .add(photo.toHash())
+                        .addOnSuccessListener { documentReference ->
+                            Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+
+                        }
+                        .addOnFailureListener { e ->
+                            Log.w(TAG, "Error adding document", e)
+                        }
+
+                }.addOnFailureListener {
+                    // Handle any errors
+                }
+
+
+
             }
 
 
