@@ -2,9 +2,7 @@ package ipca.example.photoshare.ui.home
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -12,6 +10,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import ipca.example.photoshare.R
@@ -66,8 +65,21 @@ class HomeFragment : Fragment() {
                 }
 
             }
+        setHasOptionsMenu(true)
 
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.home, menu)
+     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.action_sign_out) {
+            Firebase.auth.signOut()
+            requireActivity().finish()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onDestroyView() {
@@ -87,9 +99,10 @@ class HomeFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            holder.v.findViewById<TextView>(R.id.textViewDescription).text = photos[position].description
+
 
             holder.v.apply {
+
                 val textViewDescription = findViewById<TextView>(R.id.textViewDescription)
                 textViewDescription.text = photos[position].description
 
